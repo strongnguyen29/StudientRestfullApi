@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model {
 
     protected $fillable = [
-        'first_name', 'last_name', 'birth_day', 'student_code', 'sex', 'vnu_mail', 'other_mail', 'contact_1', 'contact_2'
+        'first_name', 'last_name', 'birth_day', 'student_code', 'sex', 'vnu_mail', 'other_mail', 'contacts'
     ];
+
+    protected $casts = ['contacts' => 'array'];
 }

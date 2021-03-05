@@ -21,9 +21,8 @@ class CreateStudentsTable extends Migration
             $table->string('student_code', 8);
             $table->string('sex');
             $table->string('vnu_mail');
-            $table->string('other_mail');
-            $table->string('contact_1');
-            $table->string('contact_2');
+            $table->string('other_mail')->nullable();
+            $table->json('contacts');
             $table->timestamps();
         });
     }
