@@ -48,16 +48,16 @@ class StudentController extends Controller
                 'first_name' => 'required|string|min:1',
                 'last_name' => 'required|string|min:1',
                 'birth_day' => 'required|date_format:Y-m-d',
-                'student_code' => 'required|string|min:8|max:8',
-                'sex' => 'required|in:male,female',
-                'vnu_mail' => 'required|mail',
-                'other_mail' => 'nullable|mail',
-                'contacts' => 'required|array',
+                'student_code' => 'required|string|min:1|max:8',
+                'sex' => 'required|string',
+                'vnu_mail' => 'required|string',
+                'other_mail' => 'nullable|string',
+                'contacts' => 'nullable|array',
                 'contacts.*.name' => 'required|string',
                 'contacts.*.address' => 'required|string',
             ]);
         } catch (ValidationException $e) {
-            return $this->apiResponse(false, $e->getMessage(), null, 400);
+            return $this->apiResponse(false, $e->getMessage(), $e, 400);
         }
 
         $student = Student::query()->create($request->all());
@@ -107,7 +107,7 @@ class StudentController extends Controller
 
             $student->save();
 
-            return $this->apiResponse(true, 'Cập nhật sinh viên thành công');
+            return $this->apiResponse(true, 'Cập nhật sinh viên thành công', $student);
         }
 
         return $this->apiResponse(false, 'Lỗi cập nhật sinh viên', null, 500);

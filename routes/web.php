@@ -21,7 +21,7 @@ $router->group(['prefix' => 'api/'], function () use ($router) {
 
     $router->get('students', ['uses' => 'StudentController@index', 'as' => 'students.index']);
 
-    $router->get('students/{id}', ['uses' => 'StudentController@index', 'as' => 'students.read']);
+    $router->get('students/{id}', ['uses' => 'StudentController@read', 'as' => 'students.read']);
 
     $router->post('students', ['uses' => 'StudentController@store', 'as' => 'students.store']);
 
